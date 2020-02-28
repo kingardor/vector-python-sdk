@@ -201,6 +201,26 @@ class BehaviorComponent(util.Component):
                                                    duration_scalar=duration_scalar)
         return await self.conn.grpc_interface.SayText(say_text_request)
 
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread()
+    async def app_intent(self, intent: str, param: str = None) -> protocol.AppIntentResponse:
+        """Send Vector an intention to do something.
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                robot.behavior.app_intent(intent='intent_system_sleep')
+
+        :param intent: The intention key
+        :param param: Intention parameter
+
+        :return: object that provides the status
+        """
+
+        app_intent_request = protocol.AppIntentRequest(intent=intent, param=param)
+        return await self.conn.grpc_interface.AppIntent(app_intent_request)
+
     # TODO Make this cancellable with is_cancellable_behavior?
     @connection.on_connection_thread()
     async def set_eye_color(self, hue: float, saturation: float) -> protocol.SetEyeColorResponse:
