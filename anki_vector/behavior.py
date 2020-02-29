@@ -221,6 +221,33 @@ class BehaviorComponent(util.Component):
         app_intent_request = protocol.AppIntentRequest(intent=intent, param=param)
         return await self.conn.grpc_interface.AppIntent(app_intent_request)
 
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread()
+    async def update_settings(self, settings) -> protocol.UpdateSettingsResponse:
+        """Send Vector an intention to do something.
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                robot.behavior.update_settings(settings={'locale':'en_US'})
+
+        :param settings: A list object with the following keys
+            clock_24_hour: bool
+            eye_color: EyeColor
+            default_location: string,
+            dist_is_metric: bool
+            locale: string
+            master_volume: Volume
+            temp_is_fahrenheit: bool
+            time_zone: string
+            button_wakeword: ButtonWakeWord
+
+        :return: object that provides the status
+        """
+        updatet_settings_request = protocol.UpdateSettingsRequest(settings=settings)
+        return await self.conn.grpc_interface.UpdateSettings(updatet_settings_request)
+
     # TODO Make this cancellable with is_cancellable_behavior?
     @connection.on_connection_thread()
     async def set_eye_color(self, hue: float, saturation: float) -> protocol.SetEyeColorResponse:
@@ -954,9 +981,10 @@ class ReserveBehaviorControl():
             self._port = config["port"]
 
         if self._name is None or self._ip is None or self._cert_file is None or self._guid is None:
-            raise ValueError("The Robot object requires a serial and for Vector to be logged in (using the app then running the anki_vector.configure executable submodule).\n"
-                             "You may also provide the values necessary for connection through the config parameter. ex: "
-                             '{"name":"Vector-XXXX", "ip":"XX.XX.XX.XX", "cert":"/path/to/cert_file", "guid":"<secret_key>"}')
+            raise ValueError(
+                "The Robot object requires a serial and for Vector to be logged in (using the app then running the anki_vector.configure executable submodule).\n"
+                "You may also provide the values necessary for connection through the config parameter. ex: "
+                '{"name":"Vector-XXXX", "ip":"XX.XX.XX.XX", "cert":"/path/to/cert_file", "guid":"<secret_key>"}')
 
         self._conn = connection.Connection(self._name, ':'.join([self._ip, self._port]), self._cert_file, self._guid,
                                            behavior_control_level=connection.CONTROL_PRIORITY_LEVEL.RESERVE_CONTROL)
