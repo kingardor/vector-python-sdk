@@ -223,6 +223,26 @@ class BehaviorComponent(util.Component):
 
     # TODO Make this cancellable with is_cancellable_behavior
     @connection.on_connection_thread()
+    async def change_locale(self, locale: str) -> protocol.UpdateSettingsResponse:
+        """Change Vectors voice locale
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                robot.behavior.change_locale(locale='de_DE')
+
+        :param locale: The locale ISO code
+
+        :return: object that provides the status
+        """
+
+        settings = {'locale': locale}
+        updatet_settings_request = protocol.UpdateSettingsRequest(settings=settings)
+        return await self.conn.grpc_interface.UpdateSettings(updatet_settings_request)
+
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread()
     async def update_settings(self, settings) -> protocol.UpdateSettingsResponse:
         """Send Vector an intention to do something.
 
