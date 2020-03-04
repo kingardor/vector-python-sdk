@@ -797,6 +797,26 @@ class Robot:
         return await self.conn.grpc_interface.BatteryState(get_battery_state_request)
 
     @on_connection_thread(requires_control=False)
+    async def get_latest_attention_transfer(self) -> protocol.LatestAttentionTransferResponse:
+        """Get the reason why the latest attention transfer failed, if any
+        
+            Returns <AttentionTransfer> with the fields:
+                - reason <AttentionTransferReason>
+                - seconds_ago
+            
+            .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                att_trans = robot.get_latest_attention_transfer()
+                if att_trans:
+                    print("Last attention transfer failed because of: {0}".format(att_trans.reason))
+        """
+        latest_attention_transfer = protocol.LatestAttentionTransferRequest()
+        return await self.conn.grpc_interface.GetLatestAttentionTransfer(latest_attention_transfer)
+
+
+    @on_connection_thread(requires_control=False)
     async def get_version_state(self) -> protocol.VersionStateResponse:
         """Get the versioning information for Vector, including Vector's os_version and engine_build_id.
 
