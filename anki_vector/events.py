@@ -34,7 +34,8 @@ class Events(Enum):
     """List of events available."""
 
     # Robot
-    robot_state = "robot_state"                   #: Robot event containing changes to the robot's state.
+    robot_state = "robot_state"                    #: Robot event containing changes to the robot's state.
+    stimulation_info = "stimulation_info"          #: Robot event containing information about the robot's stimulation.
     mirror_mode_disabled = "mirror_mode_disabled"  # : Robot event triggered when mirror mode (camera feed displayed on robot's face) is automatically disabled due to SDK no longer having control of the robot.
     vision_modes_auto_disabled = "vision_modes_auto_disabled"  # : Robot event triggered when all vision modes are automatically disabled due to the SDK no longer having control of the robot.
 
