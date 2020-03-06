@@ -39,6 +39,7 @@ class Events(Enum):
     attention_transfer = "attention_transfer"      #: Robot event triggered when an attention cannot be fullfilled
     mirror_mode_disabled = "mirror_mode_disabled"  # : Robot event triggered when mirror mode (camera feed displayed on robot's face) is automatically disabled due to SDK no longer having control of the robot.
     vision_modes_auto_disabled = "vision_modes_auto_disabled"  # : Robot event triggered when all vision modes are automatically disabled due to the SDK no longer having control of the robot.
+    photo_taken = "photo_taken"                    # : Robot event triggered when a photo was taken
 
     # Objects
     object_available = "object_available"               #: After the ConnectCube process is started, all available light cubes in range will broadcast an availability message through the Robot.
