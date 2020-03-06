@@ -257,7 +257,7 @@ class BehaviorComponent(util.Component):
         return say_future
 
     # TODO Make this cancellable with is_cancellable_behavior
-    @connection.on_connection_thread()
+    @connection.on_connection_thread(requires_control=False)
     async def app_intent(self, intent: str, param: str = None) -> protocol.AppIntentResponse:
         """Send Vector an intention to do something.
 
