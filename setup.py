@@ -57,7 +57,7 @@ setup(
     version=VERSION,
     description="The Vector SDK is a connected vision- and character-based robotics platform for everyone.",
     long_description=__doc__,
-    url='https://developer.anki.com',
+    url='https://github.com/ikkez/vector-python-sdk',
     author='Anki, Inc',
     author_email='developer@anki.com',
     license='Apache License, Version 2.0',
