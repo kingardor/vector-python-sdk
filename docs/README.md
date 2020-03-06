@@ -19,6 +19,5 @@ The makefile can be used to build different documentation targets.  The usual us
 the html version of the docs.
 
 ```bash
-make clean
-make html
+sphinx-build -b html source build
 ```

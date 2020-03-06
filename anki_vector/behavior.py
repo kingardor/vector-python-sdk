@@ -213,21 +213,21 @@ class BehaviorComponent(util.Component):
                     with anki_vector.Robot() as robot:
                         robot.behavior.say_localized_text("Hello World",language="de")
 
-                :param text: The words for Vector to say.
-                :param use_vector_voice: Whether to use Vector's robot voice
-                        (otherwise, he uses a generic human male voice).
-                :param duration_scalar: Adjust the relative duration of the
-                        generated text to speech audio.
-                :param language: Adjust the language spoken for this text
+        :param text: The words for Vector to say.
+        :param use_vector_voice: Whether to use Vector's robot voice
+                (otherwise, he uses a generic human male voice).
+        :param duration_scalar: Adjust the relative duration of the
+                generated text to speech audio.
+        :param language: Adjust the language spoken for this text
 
-                    possible values:
-                        de:         German
-                        en:         English
-                        ja or jp:   Japanese
-                        fr:         French
+            possible values:
+                - de:         German
+                - en:         English
+                - ja or jp:   Japanese
+                - fr:         French
 
-                :return: object that provides the status and utterance state
-                """
+        :return: object that provides the status and utterance state
+        """
 
         if language == 'en':
             locale = 'en_US'

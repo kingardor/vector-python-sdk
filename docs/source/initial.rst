@@ -21,9 +21,9 @@ SDK Example Programs
 
 Anki provides example programs for novice and advanced users to run with the SDK. Download the SDK example programs here:
 
-  * :verlink:`macOS/Linux SDK Examples <anki_vector_sdk_examples_0.0.0.tar.gz>`
+  * `macOS/Linux SDK Examples <https://sdk-resources.anki.com/vector/0.6.0/anki_vector_sdk_examples_0.6.0.tar.gz>`_
 
-  * :verlink:`Windows SDK Examples <anki_vector_sdk_examples_0.0.0.zip>`
+  * `Windows SDK Examples <https://sdk-resources.anki.com/vector/0.6.0/anki_vector_sdk_examples_0.6.0.tar.gz>`_
 
 Once downloaded, extract the packaged files to a new directory.
 

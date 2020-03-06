@@ -806,11 +806,11 @@ class Robot:
             
             .. testcode::
 
-            import anki_vector
-            with anki_vector.Robot() as robot:
-                att_trans = robot.get_latest_attention_transfer()
-                if att_trans:
-                    print("Last attention transfer failed because of: {0}".format(att_trans.reason))
+                import anki_vector
+                with anki_vector.Robot() as robot:
+                    att_trans = robot.get_latest_attention_transfer()
+                    if att_trans:
+                        print("Last attention transfer failed because of: {0}".format(att_trans.reason))
         """
         latest_attention_transfer = protocol.LatestAttentionTransferRequest()
         return await self.conn.grpc_interface.GetLatestAttentionTransfer(latest_attention_transfer)

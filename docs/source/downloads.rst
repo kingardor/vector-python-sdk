@@ -8,15 +8,15 @@ SDK Examples
 
 Download Python example scripts that use the Vector SDK.
 
-:verlink:`macOS/Linux SDK Examples <anki_vector_sdk_examples_0.0.0.tar.gz>`
+`macOS/Linux SDK Examples <https://sdk-resources.anki.com/vector/0.6.0/anki_vector_sdk_examples_0.6.0.tar.gz>`_
 
-:verlink:`Windows SDK Examples <anki_vector_sdk_examples_0.0.0.zip>`
+`Windows SDK Examples <https://sdk-resources.anki.com/vector/0.6.0/anki_vector_sdk_examples_0.6.0.tar.gz>`_
 
 ------
 GitHub
 ------
 
-Clone, fork, or report issues on the `GitHub vector-python-sdk repository <https://github.com/anki/vector-python-sdk>`_.
+Clone, fork, or report issues on the `GitHub vector-python-sdk repository <https://github.com/ikkez/vector-python-sdk>`_.
 
 ----
 
