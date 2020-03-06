@@ -42,6 +42,7 @@ __all__ = ["MAX_HEAD_ANGLE", "MIN_HEAD_ANGLE",
 from . import connection, faces, objects, util
 from .messaging import protocol
 from .exceptions import VectorException
+from typing import Union
 
 # Constants
 
@@ -258,20 +259,24 @@ class BehaviorComponent(util.Component):
 
     # TODO Make this cancellable with is_cancellable_behavior
     @connection.on_connection_thread(requires_control=False)
-    async def app_intent(self, intent: str, param: str = None) -> protocol.AppIntentResponse:
+    async def app_intent(self, intent: str, param: Union[str, int] = None) -> protocol.AppIntentResponse:
         """Send Vector an intention to do something.
 
         .. testcode::
 
             import anki_vector
-            with anki_vector.Robot() as robot:
+            with anki_vector.Robot(behavior_control_level=None) as robot:
                 robot.behavior.app_intent(intent='intent_system_sleep')
 
         :param intent: The intention key
-        :param param: Intention parameter
+        :param param: Intention parameter, usually a json encoded string or an int of secounds for the clock timer
 
         :return: object that provides the status
         """
+
+        # clock timer uses the length of `param` as the number of seconds to set the timer for
+        if intent=='intent_clock_settimer' and type(param) == int:
+            param = 'x' * param
 
         app_intent_request = protocol.AppIntentRequest(intent=intent, param=param)
         return await self.conn.grpc_interface.AppIntent(app_intent_request)
