@@ -24,7 +24,11 @@ import anki_vector
 
 def main():
     args = anki_vector.util.parse_command_args()
-    with anki_vector.Robot(args.serial) as robot:
+    with anki_vector.Robot(
+        args.serial,
+        behavior_activation_timeout=30.0,
+        cache_animation_lists=False
+    ) as robot:
         print("Say 'Hello World'...")
         robot.behavior.say_text("Hello World")
 
